@@ -1,23 +1,29 @@
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import type { Language } from "../data/storyType";
 
 type Props = {
   children: React.ReactNode;
+  lang: Language;
+  setLang: (l: Language) => void;
 };
-
-export default function MainLayout({ children }: Props) {
+export default function MainLayout({
+  children,
+  lang,
+  setLang,
+}: Props) {
   return (
     <div className="min-h-screen flex flex-col bg-black text-white">
       
-      {/* COMMON HEADER */}
-      <Navbar />
+      {/* HEADER */}
+      <Navbar lang={lang} setLang={setLang} />
 
-      {/* PAGE CONTENT */}
+      {/* CONTENT */}
       <main className="flex-1 p-6">
         {children}
       </main>
 
-      {/* COMMON FOOTER */}
+      {/* FOOTER */}
       <Footer />
     </div>
   );
