@@ -5,3 +5,369 @@
 body {
   @apply bg-black text-white;
 }
+
+/* =========================
+   📖 TYPOGRAPHY
+========================= */
+.italian-font {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  letter-spacing: 0.3px;
+  line-height: 1.9;
+}
+
+/* =========================
+   🌟 IMAGE EFFECTS
+========================= */
+img {
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+/* Ken Burns */
+@keyframes kenBurns {
+  0% { transform: scale(1) translate(0, 0); }
+  50% { transform: scale(1.08) translate(-1%, -1%); }
+  100% { transform: scale(1) translate(0, 0); }
+}
+
+.ken-burns {
+  animation: kenBurns 18s ease-in-out infinite;
+}
+
+/* Cinematic float */
+@keyframes cinematicFloat {
+  0% { transform: scale(1.05) translate(0px, 0px); }
+  50% { transform: scale(1.08) translate(4px, 2px); }
+  100% { transform: scale(1.05) translate(0px, 0px); }
+}
+
+.cinematic-motion {
+  animation: cinematicFloat 12s ease-in-out infinite;
+}
+
+/* =========================
+   🌟 GOLD ORNAMENT EFFECTS
+========================= */
+@keyframes goldDrift {
+  0% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) translateX(0px) rotate(0deg); }
+  100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+}
+
+.animate-goldDrift {
+  animation: goldDrift 10s ease-in-out infinite;
+}
+
+@keyframes goldBreathe {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 0.7; }
+}
+
+.animate-goldBreathe {
+  animation: goldBreathe 6s ease-in-out infinite;
+}
+
+.glow-gold {
+  filter:
+    drop-shadow(0 0 20px rgba(255, 215, 0, 0.25))
+    drop-shadow(0 0 60px rgba(255, 200, 0, 0.2));
+}
+
+/* =========================
+   📖 BOOK OPENING SYSTEM
+========================= */
+@keyframes bookEnter {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.book-enter {
+  animation: bookEnter 0.6s ease-out;
+}
+
+/* Page open flip */
+@keyframes pageOpen {
+  0% {
+    transform: scaleX(0.2);
+    opacity: 0;
+  }
+  60% {
+    transform: scaleX(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+.book-open {
+  transform-origin: center;
+  animation: pageOpen 0.8s ease-out forwards;
+}
+
+/* Book fly-in cinematic */
+@keyframes bookFlyIn {
+  0% {
+    opacity: 0;
+    transform: translateY(60px) scale(0.85) rotateX(10deg);
+    filter: blur(8px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-10px) scale(1.02);
+    filter: blur(0px);
+  }
+  100% {
+    transform: translateY(0px) scale(1);
+  }
+}
+
+.book-fly-in {
+  animation: bookFlyIn 0.9s ease-out forwards;
+}
+
+/* =========================
+   📖 STORY TEXT FLOW
+========================= */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* 🌙 soft magical glow breathing */
+/* @keyframes fairyGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 10px rgba(255, 220, 120, 0.25));
+    opacity: 0.55;
+  }
+  50% {
+    filter: drop-shadow(0 0 25px rgba(255, 240, 180, 0.45));
+    opacity: 0.85;
+  }
+} */
+
+/* .animate-fairyGlow {
+  animation: fairyGlow 4s ease-in-out infinite;
+} */
+.fairy-left {
+  transform: scaleX(-1);
+}
+/* 🧚 FLOAT PATHS (more organic, not linear) */
+@keyframes fairyPath1 {
+  0%   { transform: translate(0,0) scale(1); }
+  25%  { transform: translate(18px,-14px) scale(1.05); }
+  50%  { transform: translate(8px,-28px) scale(1.1); }
+  75%  { transform: translate(22px,-10px) scale(1.03); }
+  100% { transform: translate(0,0) scale(1); }
+}
+
+@keyframes fairyPath2 {
+  0%   { transform: translate(0,0) scale(1); }
+  25%  { transform: translate(-20px,-12px) scale(1.04); }
+  50%  { transform: translate(-10px,-30px) scale(1.08); }
+  75%  { transform: translate(-25px,-18px) scale(1.02); }
+  100% { transform: translate(0,0) scale(1); }
+}
+
+@keyframes fairyPath3 {
+  0%   { transform: translate(0,0) scale(1); }
+  25%  { transform: translate(15px,-10px) scale(1.06); }
+  50%  { transform: translate(25px,-22px) scale(1.1); }
+  75%  { transform: translate(10px,-12px) scale(1.03); }
+  100% { transform: translate(0,0) scale(1); }
+}
+/* smoother magical easing */
+.animate-fairyPath1 {
+  animation: fairyPath1 10s ease-in-out infinite;
+}
+
+.animate-fairyPath2 {
+  animation: fairyPath2 12s ease-in-out infinite;
+}
+
+.animate-fairyPath3 {
+  animation: fairyPath3 9s ease-in-out infinite;
+}
+@keyframes fairyGlow {
+  0%, 100% {
+    opacity: 0.5;
+    filter: drop-shadow(0 0 10px rgba(255, 220, 120, 0.2));
+  }
+  50% {
+    opacity: 0.9;
+    filter: drop-shadow(0 0 30px rgba(255, 240, 180, 0.5));
+  }
+}
+
+.animate-fairyGlow {
+  animation: fairyGlow 3.5s ease-in-out infinite;
+}
+@keyframes pageTurn {
+  0% {
+    transform: rotateY(0deg) scale(1);
+    filter: brightness(1);
+  }
+
+  40% {
+    transform: rotateY(-35deg) scale(0.98);
+    filter: brightness(0.85);
+  }
+
+  70% {
+    transform: rotateY(-70deg) scale(0.96);
+    filter: brightness(0.7);
+  }
+
+  100% {
+    transform: rotateY(-90deg) scale(0.9);
+    opacity: 0.6;
+    filter: brightness(0.6);
+  }
+}
+
+.page-turn {
+  transform-origin: left center;
+  animation: pageTurn 0.55s ease-in-out;
+}
+/* ================================
+   🍎 REALISTIC APPLE BOOK PAGE CURL
+================================ */
+
+@keyframes pageCurlNext {
+  0% {
+    transform: rotateY(0deg) perspective(2000px);
+    transform-origin: left center;
+    filter: brightness(1);
+  }
+
+  20% {
+    transform: rotateY(-15deg) skewY(0.5deg);
+    filter: brightness(0.95);
+  }
+
+  40% {
+    transform: rotateY(-35deg) skewY(1.5deg);
+    filter: brightness(0.85);
+  }
+
+  60% {
+    transform: rotateY(-70deg) skewY(3deg);
+    filter: brightness(0.65);
+  }
+
+  80% {
+    transform: rotateY(-110deg) skewY(4deg);
+    filter: brightness(0.5);
+  }
+
+  100% {
+    transform: rotateY(-160deg) skewY(6deg);
+    opacity: 0;
+    filter: brightness(0.3);
+  }
+}
+
+@keyframes pageCurlPrev {
+  0% {
+    transform: rotateY(0deg) perspective(2000px);
+    transform-origin: right center;
+    filter: brightness(1);
+  }
+
+  20% {
+    transform: rotateY(15deg) skewY(-0.5deg);
+    filter: brightness(0.95);
+  }
+
+  40% {
+    transform: rotateY(35deg) skewY(-1.5deg);
+    filter: brightness(0.85);
+  }
+
+  60% {
+    transform: rotateY(70deg) skewY(-3deg);
+    filter: brightness(0.65);
+  }
+
+  80% {
+    transform: rotateY(110deg) skewY(-4deg);
+    filter: brightness(0.5);
+  }
+
+  100% {
+    transform: rotateY(160deg) skewY(-6deg);
+    opacity: 0;
+    filter: brightness(0.3);
+  }
+}
+
+/* ================================
+   📖 CURL SHADOW LAYER (IMPORTANT)
+================================ */
+
+.page-curl-next,
+.page-curl-prev {
+  position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
+}
+
+/* dynamic shadow fold */
+.page-curl-next::after,
+.page-curl-prev::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(0,0,0,0.45),
+    rgba(0,0,0,0.15) 40%,
+    rgba(255,255,255,0.05)
+  );
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* highlight crease line (paper fold illusion) */
+.page-curl-next::before,
+.page-curl-prev::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+  opacity: 0.6;
+}
+
+.page-curl-next::before {
+  right: 0;
+}
+
+.page-curl-prev::before {
+  left: 0;
+}
+
+/* animation bind */
+.page-curl-next {
+  animation: pageCurlNext 0.65s cubic-bezier(0.22, 0.9, 0.25, 1) forwards;
+  transform-origin: left center;
+}
+
+.page-curl-prev {
+  animation: pageCurlPrev 0.65s cubic-bezier(0.22, 0.9, 0.25, 1) forwards;
+  transform-origin: right center;
+}

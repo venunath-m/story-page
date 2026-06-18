@@ -1,29 +1,32 @@
 
 import type { Language } from "../data/storyType";
-
+import { useNavigate } from "react-router-dom";
 type Props = {
   lang: Language;
   setLang: (l: Language) => void;
 };
 
 export default function Navbar({ lang, setLang }: Props) {
+  const navigate = useNavigate();
   return (
-    <nav className="w-full flex items-center justify-between px-6 py-4 border-b border-gray-800 bg-black text-white">
+    <nav className="w-full italian-font  flex items-center justify-between px-6 py-4 border-b border-white/10 bg-black/70 backdrop-blur-md text-white sticky top-0 z-50">
 
       {/* Logo + Title */}
-      <div className="flex items-center gap-3">
-        <img
-  src="/logo.png"
-  alt="Safa Universe"
-  className="h-20 w-20 rounded-full object-cover border border-white/20 select-none"
-  draggable={false}
-  onContextMenu={(e) => e.preventDefault()}
-  onDragStart={(e) => e.preventDefault()}
-/>
-        <h1 className="text-xl font-bold tracking-wide">
-          Safa Kunjaatta 🌸
-        </h1>
-      </div>
+      <div
+  className="flex items-center gap-3 cursor-pointer"
+  onClick={() => navigate("/")}
+>
+  <img
+    src="/logo.png"
+    alt="Safa Universe"
+    className="h-16 w-16 sm:h-32 sm:w-32 rounded-full object-cover border border-white/20 select-none"
+    draggable={false}
+  />
+
+  <h1 className="text-base sm:text-xl font-bold tracking-wide">
+    Safa Kunjaatta 🌸
+  </h1>
+</div>
 
       {/* Language Switcher */}
       <div className="flex items-center gap-2">

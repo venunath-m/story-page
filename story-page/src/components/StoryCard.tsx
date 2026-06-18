@@ -1,4 +1,4 @@
-import type { Language, MultiLangText, Story, StoryBlock } from "./data/storyType";
+import type { Language, MultiLangText, Story } from "./data/storyType";
 const getText = (text: MultiLangText | undefined, lang: Language) => {
   if (!text) return "";
   return text[lang] || text.en;
@@ -12,16 +12,16 @@ export default function StoryCard({
 }) {
   return (
     <div
-      className="w-full max-w-md bg-white/5 border border-white/10 rounded-2xl overflow-hidden shadow-lg hover:scale-[1.02] transition"
+      className="w-full italian-font max-w-md bg-white/5 border border-white/10 rounded-2xl overflow-hidden shadow-lg hover:scale-[1.02] transition"
       onContextMenu={(e) => e.preventDefault()}
     >
       {/* TITLE */}
       <div className="p-4 border-b border-white/10">
-        <h2 className="text-xl font-bold text-white">
+        <h2 className="text-xl font-bold text-white italian-font">
           {getText(story.title, lang)}
         </h2>
 
-        <div className="text-xs text-purple-400 mt-1">
+        <div className="text-xs text-purple-400 mt-1 italian-font">
           ✍️ {story.author}
         </div>
       </div>
@@ -40,13 +40,16 @@ export default function StoryCard({
             case "image":
               return (
                 <div key={index} className="space-y-1">
-                  <img
-                    src={block.src}
-                    className="w-full rounded-xl object-cover select-none"
-                    draggable={false}
-                    onContextMenu={(e) => e.preventDefault()}
-                    onDragStart={(e) => e.preventDefault()}
-                  />
+
+                 <div className="overflow-hidden rounded-xl">
+  <img
+    src={block.src}
+    className="w-full rounded-xl object-cover select-none cinematic-motion"
+    draggable={false}
+    onContextMenu={(e) => e.preventDefault()}
+    onDragStart={(e) => e.preventDefault()}
+  />
+</div>
 
                   {block.caption && (
                     <p className="text-xs text-gray-500 italic">

@@ -32,7 +32,12 @@ export type StoryBlock =
     };
 export type Story = {
   id: string;
-  title: MultiLangText;   // ✅ FIXED
+  title: MultiLangText;
+  description?: MultiLangText;
   author: string;
+  thumbnail: string;
+  createdAt?: string;
+  featured?: boolean;
+  readTime?: string; // NEW
   blocks: StoryBlock[];
 };
