@@ -15,15 +15,15 @@ const getText = (text: any, lang: Language) => {
     return text[lang] || text.en;
 };
 
-export default function StoryDetailsPage({ lang }: { lang: Language }) {
+export default function StoryDetailsPage({ lang, musicEnabled, }: { lang: Language;  musicEnabled: boolean;}) {
     const { id } = useParams();
     const story = stories.find((s) => s.id === id);
-
+    const blockMusicRef = useRef<HTMLAudioElement | null>(null);
     const [page, setPage] = useState(0);
     const [isTurning, setIsTurning] = useState(false);
     const [direction, setDirection] = useState<"next" | "prev" | null>(null);
     const [animatingPage, setAnimatingPage] = useState<number | null>(null);
-    const ambientRef = useRef<HTMLAudioElement | null>(null);
+
     const [particles, setParticles] = useState<any[]>([]);
     const fairies = [
         "/fairies/fairy1.png",
@@ -33,6 +33,54 @@ export default function StoryDetailsPage({ lang }: { lang: Language }) {
         "/fairies/fairy1.png",
         "/fairies/fairy3.png",
     ];
+   
+
+useEffect(() => {
+
+    // 🔇 user turned music off
+    if (!musicEnabled) {
+        if (blockMusicRef.current) {
+            blockMusicRef.current.pause();
+            blockMusicRef.current.currentTime = 0;
+            blockMusicRef.current = null;
+        }
+        return;
+    }
+
+    const currentBlock = story?.blocks[page];
+
+    if (!currentBlock?.music) {
+        if (blockMusicRef.current) {
+            blockMusicRef.current.pause();
+            blockMusicRef.current.currentTime = 0;
+            blockMusicRef.current = null;
+        }
+        return;
+    }
+
+    if (blockMusicRef.current) {
+        blockMusicRef.current.pause();
+        blockMusicRef.current.currentTime = 0;
+    }
+
+    const audio = new Audio(currentBlock.music);
+
+    audio.loop = true;
+    audio.volume = 0.35;
+
+    audio.play().catch(() => {});
+
+    blockMusicRef.current = audio;
+
+    return () => {
+        if (blockMusicRef.current) {
+            blockMusicRef.current.pause();
+            blockMusicRef.current.currentTime = 0;
+        }
+    };
+}, [page, story, musicEnabled]);
+
+
     useEffect(() => {
         const spawn = () => {
             const id = Math.random().toString(36).substr(2, 9);
@@ -61,43 +109,7 @@ export default function StoryDetailsPage({ lang }: { lang: Language }) {
         return () => clearInterval(interval);
     }, []);
     /* 🌙 AMBIENT MUSIC */
-    useEffect(() => {
-        const audio = new Audio("/sounds/ambient-story1.mp3");
-
-        audio.loop = true;
-        audio.volume = 0.12;
-
-        let isPlaying = false;
-
-        const start = async () => {
-            if (isPlaying) return;
-
-            try {
-                await audio.play();
-                isPlaying = true;
-            } catch (e) { }
-
-            window.removeEventListener("click", start);
-            window.removeEventListener("touchstart", start);
-        };
-
-        window.addEventListener("click", start);
-        window.addEventListener("touchstart", start);
-
-        ambientRef.current = audio;
-
-        return () => {
-            // 🧹 HARD STOP EVERYTHING
-            audio.pause();
-            audio.currentTime = 0;
-            audio.src = "";
-
-            ambientRef.current = null;
-
-            window.removeEventListener("click", start);
-            window.removeEventListener("touchstart", start);
-        };
-    }, []);
+    
 
     /* 🔊 PAGE TURN SOUND (ONLY ON EVENT) */
     const playTurnSound = () => {

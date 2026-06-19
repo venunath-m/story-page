@@ -10,13 +10,16 @@ const getText = (text: MultiLangText | undefined, lang: Language) => {
 export default function StoryGridCard({
   story,
   lang,
+  onOpenStory,
 }: {
   story: Story;
   lang: Language;
+   onOpenStory?: () => void;
 }) {
   const navigate = useNavigate();
 
   const handleOpen = () => {
+     onOpenStory?.();
     // optional sound
     const audio = new Audio("/sounds/page-open.mp3");
     audio.volume = 0.4;

@@ -155,6 +155,7 @@ export const stories: Story[] = [
         blocks: [
             {
                 type: "text",
+                music: "/sounds/blessingsfromforestfairies.mpeg",
                 content: {
                     arabic: "منذ زمنٍ بعيدٍ جداً، في وادٍ جميل كانت سماؤه الليلية تشرق بألوانٍ ساحرةٍ وعجيبةٍ لم يشهدها أحدٌ في أي مكانٍ آخر، عاش ثلاثة أصدقاءٍ مقرّبين: صفا، وكونجاتا، وسويكاه.",
                     russian: "Давным-давно, в прекрасной долине, где ночное небо сияло удивительными красками, невиданными больше нигде в мире, жили три близких друга — Сафа, Кунджатта и Суиках.",
@@ -174,6 +175,7 @@ export const stories: Story[] = [
             {
                 type: "image",
                 src: cover1,
+                music: "/sounds/blessingsfromforestfairies.mpeg",
                 caption: {
                     en: "Safa, Kunjatta and suika beneath the silver tree.",
 
@@ -203,6 +205,7 @@ export const stories: Story[] = [
 
             {
                 type: "text",
+                music: "/sounds/blessingsfromforestfairies.mpeg",
                 content: {
                     en: "Safa loved collecting stories. Kunjatta loved collecting smiles. And suika loved collecting dreams.",
 
@@ -232,6 +235,7 @@ export const stories: Story[] = [
 
             {
                 type: "text",
+                music: "/sounds/blessingsfromforestfairies.mpeg",
                 content: {
                     en: "Every evening they met beneath an ancient silver tree that stood on a hill overlooking the valley.",
 
@@ -262,6 +266,7 @@ export const stories: Story[] = [
             {
                 type: "image",
                 src: cover2,
+                music: "/sounds/blessingsfromforestfairies.mpeg",
                 caption: {
                     en: "A mysterious lantern appeared among the branches.",
 
@@ -291,6 +296,7 @@ export const stories: Story[] = [
 
             {
                 type: "text",
+                music: "/sounds/blessingsfromforestfairies.mpeg",
                 content: {
                     en: "One night, a mysterious lantern appeared hanging from the tree. It wasn't made of metal or glass. It seemed to be woven from starlight itself.",
 
@@ -320,6 +326,7 @@ export const stories: Story[] = [
 
             {
                 type: "text",
+                music: "/sounds/blessingsfromforestfairies.mpeg",
                 content: {
                     en: "\"Who left it here?\" asked Kunjatta.",
 
@@ -349,6 +356,7 @@ export const stories: Story[] = [
 
             {
                 type: "text",
+                music: "/sounds/blessingsfromforestfairies.mpeg",
                 content: {
                     en: "\"I don't know,\" said Safa, gently touching the lantern, \"but I think it's waiting for something.\"",
 
@@ -379,6 +387,7 @@ export const stories: Story[] = [
             {
                 type: "image",
                 src: cover3,
+                music: "/sounds/blessingsfromforestfairies.mpeg",
                 caption: {
                     en: "The friends discovered the lantern was empty.",
 
@@ -408,6 +417,7 @@ export const stories: Story[] = [
 
             {
                 type: "text",
+                music: "/sounds/blessingsfromforestfairies.mpeg",
                 content: {
                     en: "suika peered inside and discovered that the lantern was completely empty.",
 
@@ -437,6 +447,7 @@ export const stories: Story[] = [
 
             {
                 type: "text",
+                music: "/sounds/blessingsfromforestfairies.mpeg",
                 content: {
                     en: "Days later an old traveler appeared beneath the silver tree. His cloak sparkled like the night sky.",
 
@@ -467,6 +478,7 @@ export const stories: Story[] = [
             {
                 type: "image",
                 src: cover4,
+                music: "/sounds/blessingsfromforestfairies.mpeg",
                 caption: {
                     en: "The traveler revealed the lantern's secret.",
 
@@ -496,6 +508,7 @@ export const stories: Story[] = [
 
             {
                 type: "text",
+                music: "/sounds/blessingsfromforestfairies.mpeg",
                 content: {
                     en: "\"That lantern cannot be lit by fire,\" he explained. \"A story lights one part. A smile lights another. A dream lights the last.\"",
 
@@ -525,6 +538,7 @@ export const stories: Story[] = [
 
             {
                 type: "text",
+                music: "/sounds/blessingsfromforestfairies.mpeg",
                 content: {
                     en: "The next night Safa shared her favorite story. A tiny golden light appeared inside the lantern.",
 
@@ -554,6 +568,7 @@ export const stories: Story[] = [
 
             {
                 type: "text",
+                music: "/sounds/blessingsfromforestfairies.mpeg",
                 content: {
                     en: "Kunjatta shared a smile with a lonely child from the village. Another light appeared.",
 
@@ -583,6 +598,7 @@ export const stories: Story[] = [
 
             {
                 type: "text",
+                music: "/sounds/blessingsfromforestfairies.mpeg",
                 content: {
                     en: "suika spoke about a dream where everyone could find happiness. A third light appeared.",
 
@@ -613,6 +629,7 @@ export const stories: Story[] = [
             {
                 type: "image",
                 src: lanternThumb,
+                music: "/sounds/blessingsfromforestfairies.mpeg",
                 caption: {
                     en: "The Lantern of Stars finally awakened.",
 
@@ -642,6 +659,7 @@ export const stories: Story[] = [
 
             {
                 type: "text",
+                music: "/sounds/blessingsfromforestfairies.mpeg",
                 content: {
                     en: "The lantern burst into a beautiful glow. Golden stars floated across the valley, spreading kindness wherever they landed.",
 
@@ -671,6 +689,7 @@ export const stories: Story[] = [
 
             {
                 type: "text",
+                music: "/sounds/blessingsfromforestfairies.mpeg",
                 content: {
                     en: "From that day onward, Safa, Kunjatta, and suika became guardians of the Lantern of Stars.",
 
@@ -700,6 +719,7 @@ export const stories: Story[] = [
 
             {
                 type: "text",
+                music: "/sounds/blessingsfromforestfairies.mpeg",
                 content: {
                     en: "And the lantern still whispers today: Stories make us remember. Smiles make us stronger. Dreams help us fly.",
 

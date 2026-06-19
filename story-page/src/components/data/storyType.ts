@@ -19,16 +19,19 @@ export type StoryBlock =
   | {
       type: "text";
       content: MultiLangText;
+      music?: string;
     }
   | {
       type: "image";
       src: string;
       caption?: MultiLangText;
+      music?: string;
     }
   | {
       type: "video";
       src: string;
       caption?: MultiLangText;
+      music?: string;
     };
 export type Story = {
   id: string;

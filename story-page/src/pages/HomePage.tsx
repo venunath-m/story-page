@@ -1,12 +1,12 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect,  useState } from "react";
 import StoryCard from "../components/StoryCard";
 import StoryGridCard from "../components/StoryGridCard";
 import { stories } from "../components/data/stories";
 import type { Language } from "../components/data/storyType";
 import FairyParticles from "../components/FairyParticles";
 
-export default function HomePage({ lang }: { lang: Language }) {
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+export default function HomePage({ lang,setMusicEnabled, }: { lang: Language; setMusicEnabled: (value: boolean) => void; }) {
+ 
 const fairies = [
   "/fairies/fairy1.png",
   "/fairies/fairy2.png",
@@ -43,34 +43,7 @@ useEffect(() => {
 
   return () => clearInterval(interval);
 }, []);
-  useEffect(() => {
-    // 🎵 create audio ONLY ONCE per page mount
-    const audio = new Audio("/sounds/ambient-story1.mp3");
-
-    audio.loop = true;
-    audio.volume = 0.12;
-
-    audioRef.current = audio;
-
-    // 🎬 play immediately on page load
-    const playAudio = async () => {
-      try {
-        await audio.play();
-      } catch (err) {
-        // autoplay may still be blocked in some browsers
-        console.log("Autoplay blocked:", err);
-      }
-    };
-
-    playAudio();
-
-    // 🧹 cleanup when leaving page (IMPORTANT)
-    return () => {
-      audio.pause();
-      audio.currentTime = 0;
-      audioRef.current = null;
-    };
-  }, []);
+ 
 
   return (
     <div className="max-w-7xl mx-auto px-4">
@@ -106,7 +79,7 @@ useEffect(() => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {stories.map((story) => (
-            <StoryGridCard key={story.id} story={story} lang={lang} />
+            <StoryGridCard key={story.id} story={story} lang={lang} onOpenStory={() => setMusicEnabled(true)} />
           ))}
         </div>
       </div>

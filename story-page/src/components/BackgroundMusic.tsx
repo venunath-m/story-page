@@ -2,11 +2,16 @@ import { useEffect, useRef } from "react";
 
 let globalAudio: HTMLAudioElement | null = null;
 
-export default function BackgroundMusic() {
+type Props = {
+  musicEnabled: boolean;
+};
+
+export default function BackgroundMusic({
+  musicEnabled,
+}: Props) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    // prevent duplicate audio instances
     if (!globalAudio) {
       globalAudio = new Audio("/sounds/ambient-story1.mp3");
       globalAudio.loop = true;
@@ -16,7 +21,10 @@ export default function BackgroundMusic() {
     audioRef.current = globalAudio;
 
     const startMusic = () => {
-      globalAudio?.play().catch(() => {});
+      if (musicEnabled) {
+        globalAudio?.play().catch(() => {});
+      }
+
       window.removeEventListener("click", startMusic);
       window.removeEventListener("touchstart", startMusic);
     };
@@ -29,6 +37,16 @@ export default function BackgroundMusic() {
       window.removeEventListener("touchstart", startMusic);
     };
   }, []);
+
+  useEffect(() => {
+    if (!globalAudio) return;
+
+    if (musicEnabled) {
+      globalAudio.play().catch(() => {});
+    } else {
+      globalAudio.pause();
+    }
+  }, [musicEnabled]);
 
   return null;
 }
