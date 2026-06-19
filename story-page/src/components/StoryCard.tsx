@@ -1,4 +1,5 @@
 import type { Language, MultiLangText, Story } from "./data/storyType";
+import FairyParticles from "./FairyParticles";
 const getText = (text: MultiLangText | undefined, lang: Language) => {
   if (!text) return "";
   return text[lang] || text.en;
@@ -15,6 +16,7 @@ export default function StoryCard({
       className="w-full italian-font max-w-md bg-white/5 border border-white/10 rounded-2xl overflow-hidden shadow-lg hover:scale-[1.02] transition"
       onContextMenu={(e) => e.preventDefault()}
     >
+      <FairyParticles />
       {/* TITLE */}
       <div className="p-4 border-b border-white/10">
         <h2 className="text-xl font-bold text-white italian-font">

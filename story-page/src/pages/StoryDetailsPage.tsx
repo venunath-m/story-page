@@ -6,7 +6,9 @@ import type { Language } from "../components/data/storyType";
 
 import goldenLeft from "../assets/elements/golden-left.png";
 import goldenRight from "../assets/elements/golden-right.png";
-import fairy from "../assets/images/fairy3.jpg";
+import fairy from "../../public/fairies/fairy1.png";
+import FairySwarm from "../components/FairyFollower";
+import FairyParticles from "../components/FairyParticles";
 
 const getText = (text: any, lang: Language) => {
     if (!text) return "";
@@ -22,45 +24,80 @@ export default function StoryDetailsPage({ lang }: { lang: Language }) {
     const [direction, setDirection] = useState<"next" | "prev" | null>(null);
     const [animatingPage, setAnimatingPage] = useState<number | null>(null);
     const ambientRef = useRef<HTMLAudioElement | null>(null);
+    const [particles, setParticles] = useState<any[]>([]);
+    const fairies = [
+        "/fairies/fairy1.png",
+        "/fairies/fairy2.png",
+        "/fairies/fairy3.png",
+        "/fairies/fairy2.png",
+        "/fairies/fairy1.png",
+        "/fairies/fairy3.png",
+    ];
+    useEffect(() => {
+        const spawn = () => {
+            const id = Math.random().toString(36).substr(2, 9);
 
+            const newFairy = {
+                id,
+                src: fairies[Math.floor(Math.random() * fairies.length)],
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight,
+                size: 10 + Math.random() * 25,
+                duration: 6 + Math.random() * 6,
+            };
+
+            setParticles((prev) => [...prev, newFairy]);
+
+            // remove after animation
+            setTimeout(() => {
+                setParticles((prev) => prev.filter((p) => p.id !== id));
+            }, newFairy.duration * 1000);
+        };
+
+        const interval = setInterval(() => {
+            spawn();
+        }, 900); // random interval feel
+
+        return () => clearInterval(interval);
+    }, []);
     /* 🌙 AMBIENT MUSIC */
     useEffect(() => {
-    const audio = new Audio("/sounds/ambient-story1.mp3");
+        const audio = new Audio("/sounds/ambient-story1.mp3");
 
-    audio.loop = true;
-    audio.volume = 0.12;
+        audio.loop = true;
+        audio.volume = 0.12;
 
-    let isPlaying = false;
+        let isPlaying = false;
 
-    const start = async () => {
-        if (isPlaying) return;
+        const start = async () => {
+            if (isPlaying) return;
 
-        try {
-            await audio.play();
-            isPlaying = true;
-        } catch (e) {}
-        
-        window.removeEventListener("click", start);
-        window.removeEventListener("touchstart", start);
-    };
+            try {
+                await audio.play();
+                isPlaying = true;
+            } catch (e) { }
 
-    window.addEventListener("click", start);
-    window.addEventListener("touchstart", start);
+            window.removeEventListener("click", start);
+            window.removeEventListener("touchstart", start);
+        };
 
-    ambientRef.current = audio;
+        window.addEventListener("click", start);
+        window.addEventListener("touchstart", start);
 
-    return () => {
-        // 🧹 HARD STOP EVERYTHING
-        audio.pause();
-        audio.currentTime = 0;
-        audio.src = "";
+        ambientRef.current = audio;
 
-        ambientRef.current = null;
+        return () => {
+            // 🧹 HARD STOP EVERYTHING
+            audio.pause();
+            audio.currentTime = 0;
+            audio.src = "";
 
-        window.removeEventListener("click", start);
-        window.removeEventListener("touchstart", start);
-    };
-}, []);
+            ambientRef.current = null;
+
+            window.removeEventListener("click", start);
+            window.removeEventListener("touchstart", start);
+        };
+    }, []);
 
     /* 🔊 PAGE TURN SOUND (ONLY ON EVENT) */
     const playTurnSound = () => {
@@ -149,16 +186,60 @@ export default function StoryDetailsPage({ lang }: { lang: Language }) {
 
             {/* BACKGROUND */}
             <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_20%_20%,rgba(255,215,0,0.2),transparent_40%),radial-gradient(circle_at_80%_60%,rgba(255,255,255,0.1),transparent_40%)]" />
-
+            {/* 🧚 RANDOM FAIRY PARTICLES */}
+            <div className="fixed inset-0 pointer-events-none z-20">
+                {particles.map((p) => (
+                    <img
+                        key={p.id}
+                        src={p.src}
+                        className="absolute rounded-full animate-fairyGlow fairy-blend"
+                        style={{
+                            left: p.x,
+                            top: p.y,
+                            width: p.size,
+                            animation: `floatUp ${p.duration}s linear forwards`,
+                        }}
+                    />
+                ))}
+            </div>
             {/* ORNAMENTS */}
-            <img src={goldenLeft} className="fixed left-0 top-1/2 -translate-y-1/2 w-64 opacity-60" />
-            <img src={goldenRight} className="fixed right-0 top-1/2 -translate-y-1/2 w-64 opacity-60" />
+            {/* <img src={goldenLeft} className="fixed  glow-gold left-0 top-1/2 -translate-y-1/2 w-64 opacity-60" />
+            <img src={goldenRight} className="fixed  glow-gold right-0 top-1/2 -translate-y-1/2 w-64 opacity-60" /> */}
 
-            {/* FAIRIES */}
-            <img src={fairy} className="absolute top-3 left-3 w-14 opacity-70 animate-fairyGlow rounded-full" />
-            <img src={fairy} className="absolute top-3 right-3 w-12 opacity-60 animate-fairyGlow rounded-full" />
-            <img src={fairy} className="absolute bottom-3 left-3 w-16 opacity-50 animate-fairyGlow rounded-full" />
+<img
+  src={goldenLeft}
+  className="fixed left-0 top-[40%] -translate-y-1/2 w-56 opacity-50 glow-gold animate-goldDrift pointer-events-none"
+/>
 
+<img
+  src={goldenRight}
+  className="fixed right-0 top-[40%] -translate-y-1/2 w-56 opacity-50 glow-gold animate-goldDrift pointer-events-none"
+/>
+            <div className="pointer-events-none fixed inset-0 z-20">
+                {/* FAIRIES */}
+                <div className="absolute top-20 left-14 animate-fairyPath1">
+                    <img
+                        src={fairy}
+                        className="fairy-blend w-14 opacity-70 rounded-full animate-fairyGlow"
+                    />
+                </div>
+
+                <div className="absolute top-24 right-14 animate-fairyPath2">
+                    <img
+                        src={fairy}
+                        className="fairy-left fairy-blend w-12 opacity-60 rounded-full animate-fairyGlow"
+                    />
+                </div>
+
+                <div className="absolute bottom-16 left-3 animate-fairyPath3">
+                    <img
+                        src={fairy}
+                        className="fairy-blend w-16 opacity-50 rounded-full animate-fairyGlow"
+                    />
+                </div>
+                <FairyParticles />
+                <FairySwarm />
+            </div>
             {/* BOOK */}
             <div
                 className={`

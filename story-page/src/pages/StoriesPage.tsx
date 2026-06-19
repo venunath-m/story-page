@@ -6,9 +6,43 @@ import type { Language } from "../components/data/storyType";
 export default function StoriesPage({ lang }: { lang: Language }) {
   const ambientRef = useRef<HTMLAudioElement | null>(null);
   const openSoundRef = useRef<HTMLAudioElement | null>(null);
-
+  const fairies = [
+  "/fairies/fairy1.png",
+  "/fairies/fairy2.png",
+  "/fairies/fairy3.png",
+  "/fairies/fairy2.png",
+  "/fairies/fairy1.png",
+  "/fairies/fairy3.png",
+];
+const [particles, setParticles] = useState<any[]>([]);
   const [startAnim, setStartAnim] = useState(false);
+useEffect(() => {
+  const spawn = () => {
+    const id = Math.random().toString(36).substr(2, 9);
 
+    const newParticle = {
+      id,
+      src: fairies[Math.floor(Math.random() * fairies.length)],
+      x: Math.random() * window.innerWidth,
+      y: window.innerHeight + 50, // start from bottom
+      size: 10 + Math.random() * 18,
+      duration: 10 + Math.random() * 10,
+      drift: (Math.random() - 0.5) * 80,
+    };
+
+    setParticles((prev) => [...prev, newParticle]);
+
+    setTimeout(() => {
+      setParticles((prev) => prev.filter((p) => p.id !== id));
+    }, newParticle.duration * 1000);
+  };
+
+  const interval = setInterval(() => {
+    spawn();
+  }, 1200); // slower than story page
+
+  return () => clearInterval(interval);
+}, []);
   useEffect(() => {
     // 🎵 Ambient background
     const ambient = new Audio("/sounds/ambient-story1.mp3");
@@ -45,7 +79,22 @@ export default function StoriesPage({ lang }: { lang: Language }) {
 
   return (
     <div className="max-w-7xl mx-auto px-4">
-
+{/* 🧚 AMBIENT FAIRY BACKGROUND */}
+<div className="fixed inset-0 pointer-events-none z-0">
+  {particles.map((p) => (
+    <img
+      key={p.id}
+      src={p.src}
+      className="absolute rounded-full fairy-blend animate-fairyGlow"
+      style={{
+        left: p.x,
+        top: p.y,
+        width: p.size,
+        animation: `floatUpSlow ${p.duration}s linear forwards`,
+      }}
+    />
+  ))}
+</div>
       {/* HEADER */}
       <div className="text-center mb-10">
         <h1 className="text-4xl font-bold text-white italian-font">

@@ -1,5 +1,6 @@
 import {  useNavigate } from "react-router-dom";
 import type { Language, MultiLangText, Story } from "./data/storyType";
+import FairyParticles from "./FairyParticles";
 
 const getText = (text: MultiLangText | undefined, lang: Language) => {
   if (!text) return "";
@@ -32,6 +33,7 @@ export default function StoryGridCard({
       onClick={handleOpen}
       className="italian-font group relative overflow-hidden rounded-2xl shadow-lg block cursor-pointer"
     >
+      <FairyParticles />
       {/* Thumbnail */}
       <img
         src={story.thumbnail}

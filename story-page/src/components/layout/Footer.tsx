@@ -20,7 +20,14 @@ export default function Footer() {
     onContextMenu={(e) => e.preventDefault()}
     onDragStart={(e) => e.preventDefault()}
   />
-
+ <img
+    src="/fairies/mushroom.png"
+    alt=""
+    className="w-20 animate-mushroomFloat select-none"
+     draggable={false}
+    onContextMenu={(e) => e.preventDefault()}
+    onDragStart={(e) => e.preventDefault()}
+  />
   <span className="text-white font-semibold text-lg tracking-wide">
     Safa Kunjaatta Universe 🌸
   </span>

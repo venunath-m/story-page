@@ -70,8 +70,35 @@ img {
 
 .glow-gold {
   filter:
-    drop-shadow(0 0 20px rgba(255, 215, 0, 0.25))
-    drop-shadow(0 0 60px rgba(255, 200, 0, 0.2));
+    drop-shadow(0 0 20px rgba(255, 215, 0, 0.8))
+    drop-shadow(0 0 50px rgba(255, 215, 0, 0.6))
+    drop-shadow(0 0 120px rgba(255, 170, 0, 0.5))
+    drop-shadow(0 0 180px rgba(255, 140, 0, 0.35));
+}
+@keyframes goldPulse {
+  0%,100% {
+    filter:
+      drop-shadow(0 0 20px rgba(255,215,0,0.5))
+      drop-shadow(0 0 50px rgba(255,200,0,0.3));
+  }
+
+  50% {
+    filter:
+      drop-shadow(0 0 40px rgba(255,215,0,0.9))
+      drop-shadow(0 0 90px rgba(255,200,0,0.7))
+      drop-shadow(0 0 150px rgba(255,170,0,0.5));
+  }
+}
+
+.glow-gold {
+  animation: goldPulse 5s ease-in-out infinite;
+}
+.glow-gold {
+  animation: goldPulse 5s ease-in-out infinite;
+}
+
+.animate-goldDrift {
+  animation: goldDrift 10s ease-in-out infinite;
 }
 
 /* =========================
@@ -164,29 +191,183 @@ img {
 .fairy-left {
   transform: scaleX(-1);
 }
-/* 🧚 FLOAT PATHS (more organic, not linear) */
-@keyframes fairyPath1 {
-  0%   { transform: translate(0,0) scale(1); }
-  25%  { transform: translate(18px,-14px) scale(1.05); }
-  50%  { transform: translate(8px,-28px) scale(1.1); }
-  75%  { transform: translate(22px,-10px) scale(1.03); }
-  100% { transform: translate(0,0) scale(1); }
+.fairy-blend {
+  mix-blend-mode: screen;
+  opacity: 0.8;
+  filter: brightness(1.2) contrast(1.1);
+}
+@keyframes fairyFly {
+  0% {
+    transform: translate(0px, 0px) scale(0.9) rotate(0deg);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  20% {
+    transform: translate(30px, -20px) scale(1) rotate(5deg);
+  }
+
+  40% {
+    transform: translate(-20px, -60px) scale(1.05) rotate(-6deg);
+  }
+
+  60% {
+    transform: translate(40px, -120px) scale(1.1) rotate(8deg);
+  }
+
+  80% {
+    transform: translate(-30px, -180px) scale(1.05) rotate(-8deg);
+  }
+
+  100% {
+    transform: translate(20px, -260px) scale(0.9) rotate(10deg);
+    opacity: 0;
+  }
+}
+@keyframes fairyFlutter {
+  0%,100% {
+    transform: scale(1) rotate(-2deg);
+  }
+
+  25% {
+    transform: scale(1.05) rotate(2deg);
+  }
+
+  50% {
+    transform: scale(1.1) rotate(-1deg);
+  }
+
+  75% {
+    transform: scale(1.04) rotate(3deg);
+  }
 }
 
+.animate-fairyFlutter {
+  animation: fairyFlutter 1.5s ease-in-out infinite;
+}
+.fairy-aura {
+  position: absolute;
+  inset: -20px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 220, 120, 0.35),
+    transparent 70%
+  );
+  filter: blur(10px);
+  z-index: -1;
+}
+@keyframes floatUpSlow {
+  0% {
+    transform: translateY(0px) translateX(0px) scale(1);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: translateY(-120vh) translateX(40px) scale(1.3);
+    opacity: 0;
+  }
+}
+@keyframes floatUp {
+  0% {
+    transform: translateY(0px) scale(1);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-120px) scale(1.2);
+    opacity: 0;
+  }
+}
+/* 🧚 FLOAT PATHS (more organic, not linear) */
+@keyframes fairyPath1 {
+  0% {
+    transform: translate(0,0) rotate(0deg);
+  }
+
+  25% {
+    transform: translate(18px,-14px) rotate(4deg);
+  }
+
+  50% {
+    transform: translate(8px,-28px) rotate(-3deg);
+  }
+
+  75% {
+    transform: translate(22px,-10px) rotate(6deg);
+  }
+
+  100% {
+    transform: translate(0,0) rotate(0deg);
+  }
+}
+@keyframes fairyPulse {
+  0%,100% {
+    filter:
+      drop-shadow(0 0 8px rgba(255,220,120,.25));
+  }
+
+  50% {
+    filter:
+      drop-shadow(0 0 25px rgba(255,240,180,.6));
+  }
+}
+
+.animate-fairyPulse {
+  animation: fairyPulse 4s ease-in-out infinite;
+}
 @keyframes fairyPath2 {
-  0%   { transform: translate(0,0) scale(1); }
-  25%  { transform: translate(-20px,-12px) scale(1.04); }
-  50%  { transform: translate(-10px,-30px) scale(1.08); }
-  75%  { transform: translate(-25px,-18px) scale(1.02); }
-  100% { transform: translate(0,0) scale(1); }
+  0% {
+    transform: translate(0,0) rotate(0deg);
+  }
+
+  25% {
+    transform: translate(18px,-14px) rotate(4deg);
+  }
+
+  50% {
+    transform: translate(8px,-28px) rotate(-3deg);
+  }
+
+  75% {
+    transform: translate(22px,-10px) rotate(6deg);
+  }
+
+  100% {
+    transform: translate(0,0) rotate(0deg);
+  }
 }
 
 @keyframes fairyPath3 {
-  0%   { transform: translate(0,0) scale(1); }
-  25%  { transform: translate(15px,-10px) scale(1.06); }
-  50%  { transform: translate(25px,-22px) scale(1.1); }
-  75%  { transform: translate(10px,-12px) scale(1.03); }
-  100% { transform: translate(0,0) scale(1); }
+  0% {
+    transform: translate(0,0) rotate(0deg);
+  }
+
+  25% {
+    transform: translate(18px,-14px) rotate(4deg);
+  }
+
+  50% {
+    transform: translate(8px,-28px) rotate(-3deg);
+  }
+
+  75% {
+    transform: translate(22px,-10px) rotate(6deg);
+  }
+
+  100% {
+    transform: translate(0,0) rotate(0deg);
+  }
 }
 /* smoother magical easing */
 .animate-fairyPath1 {
