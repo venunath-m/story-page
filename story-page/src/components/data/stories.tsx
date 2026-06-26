@@ -1,10 +1,21 @@
 import type { Story } from "./storyType";
-import storyImage from "../../assets/images/story1.png";
+import storyImage from "../../assets/whispering-stars-forest-complete/cover.png";
+import watermelon_rolling from "../../assets/whispering-stars-forest-complete/scene2.png";
 import lanternThumb from "../../assets/story1/cover5.png";
 import cover1 from "../../assets/story1/cover1.png";
 import cover2 from "../../assets/story1/cover2.png";
 import cover3 from "../../assets/story1/cover3.png";
 import cover4 from "../../assets/story1/cover4.png";
+import kunjatta_cake_fall from "../../assets/whispering-stars-forest-complete/scene1.png";
+import mochi_shy_fox from "../../assets/whispering-stars-forest-complete/mochiScene.png";
+import professor_hootu_scrolls from "../../assets/whispering-stars-forest-complete/profhootuScene.png";
+import lulu_rainbow_trail from "../../assets/whispering-stars-forest-complete/lulusScene.png";
+import safa from "../../assets/whispering-stars-forest-complete/safa.png";
+import suika from "../../assets/whispering-stars-forest-complete/suika.png";
+import mochi from "../../assets/whispering-stars-forest-complete/mochi.png";
+import kunjatta from "../../assets/whispering-stars-forest-complete/kunjatta.png";
+import professorHootu from "../../assets/whispering-stars-forest-complete/professorHootu.png";
+import lulu from "../../assets/whispering-stars-forest-complete/chatLulu.png";
 
 export const stories: Story[] = [
     {
@@ -747,6 +758,195 @@ export const stories: Story[] = [
                 }
             }
 
+        ]
+    },
+    {
+        id: "whispering-stars-forest-complete",
+
+        title: {
+            en: "The Fairy Forest of Whispering Stars 🌸",
+            hi: "फुसफुसाते तारों का परी वन 🌸",
+            ml: "മന്ത്രിക്കുന്ന നക്ഷത്രങ്ങളുടെ മാലാഖക്കാട് 🌸"
+        },
+
+        genre: ["Fairy tale", "Motivation", "Adventure", "Comedy", "Emotional", "Nature", "Family"],
+        thumbnail: storyImage,
+        author: "Safa",
+        createdAt: "2026-06-26",
+        featured: true,
+        readTime: "9 min",
+
+        characters: [
+            {
+                name: "Safa",
+                image: safa,
+                type: "Tiny Moon Fairy",
+                description: "Has silver wings that glow whenever someone is kind. She never uses magic to solve problems; she uses hope."
+            },
+            {
+                name: "Kunjatta",
+                image: kunjatta,
+                type: "Fluffy Little Chick",
+                description: "Thinks he is the bravest warrior in existence... until he sees a butterfly. 😂"
+            },
+            {
+                name: "Suika",
+                image: suika,
+                type: "Watermelon Sprite",
+                description: "A cheerful sprite who rolls everywhere because walking is 'too slow.' She laughs so hard that flowers bloom around her."
+            },
+            {
+                name: "Mochi",
+                image: mochi,
+                type: "Shy Little Fox",
+                description: "Can hear the feelings hidden inside hearts."
+            },
+            {
+                name: "Professor Hootu",
+                image: professorHootu,
+                type: "Old Owl",
+                description: "Forgets everything... except the lessons that truly matter."
+            },
+            {
+                name: "Lulu",
+                image: lulu,
+                type: "Tiny Rainbow Butterfly",
+                description: "Cannot speak with words. She communicates through colorful lights."
+            }
+        ],
+
+        blocks: [
+            {
+                type: "text",
+                music: "/sounds/whispering-stars-forest-completeCoverSong.mpeg",
+                content: {
+                    en: "Far beyond the clouds... Beyond the stars... Beyond the dreams that children see before falling asleep... There exists a magical land called Luminara Forest. Every flower sings. Every river giggles. Every tree remembers every child who has ever smiled.",
+                    hi: "बादलों से परे... तारों से परे... उन सपनों से भी परे जो बच्चे सोने से पहले देखते हैं... एक जादुई भूमि है जिसे ल्यूमिनारा वन कहा जाता है। वहाँ हर फूल गाता है। हर नदी खिलखिलाती है। हर पेड़ उस बच्चे को याद रखता है जो कभी मुस्कुराया हो।"
+                }
+            },
+            {
+                type: "text",
+                music: "/sounds/lilex-whispers-of-the-wind-302112.mpeg",
+                content: {
+                    en: "And every morning... A tiny fairy named Safa flies around whispering... 'Good morning, little hearts... Today is another beautiful adventure.'",
+                    hi: "और हर सुबह... सफा नाम की एक नन्ही परी चारों ओर फुसफुसाते हुए उड़ती है... 'सुप्रभात, नन्हे दिलों... आज एक और सुंदर रोमांच का दिन है।'"
+                }
+            },
+            {
+                type: "image",
+                src: kunjatta_cake_fall,
+                caption: { en: "Kunjatta lands PLOP! straight into a strawberry cake." }
+            },
+            {
+                type: "text",
+                music: "/sounds/46268990-funny-cat-meow-246012.mpeg",
+                content: {
+                    en: "One day... A tiny yellow chick fell from a cloud. PLOP!! He landed directly inside a strawberry cake. 'Help!! I wasn't supposed to become dessert!!' The fairy laughed. The flowers laughed. Even the cake laughed.",
+                    hi: "एक दिन... एक छोटा पीला चूजा बादल से नीचे गिर गया। प्लॉप!! वह सीधे एक स्ट्रॉबेरी केक के अंदर जा गिरा। 'बचाओ!! मुझे मिठाई नहीं बनना था!!' परी हंसी। फूल हंसे। यहाँ तक कि केक भी हंस पड़ा।"
+                }
+            },
+            {
+                type: "text",
+                music: "/sounds/freesound_community-butterfly-wings-fluttering-2-28738.mpeg",
+                content: {
+                    en: "The chick slowly stood up... 'My name... is... Kunjatta!! I'm going to become the greatest explorer EVER!!' Five seconds later... 'Aaaah!! Butterfly!!' He ran away screaming. 😂",
+                    hi: "चूजा धीरे से खड़ा हुआ... 'मेरा नाम... है... कुंजाट्टा!! मैं अब तक का सबसे महान खोजकर्ता बनने जा रहा हूँ!!' पांच सेकंड बाद... 'आह!! तितली!!' वह चिल्लाते हुए भाग गया। 😂"
+                }
+            },
+            {
+                type: "image",
+                src: watermelon_rolling,
+                caption: { en: "A giant watermelon barreling down Rainbow Hill with no brakes!" }
+            },
+            {
+                type: "text",
+                music: "/sounds/freesound_community-watermelon_squelch7-89691.mpeg",
+                content: {
+                    en: "While everyone laughed... Something huge... BOOM... A giant watermelon rolled down Rainbow Hill. 'Move!! Brakes don't exist!!' It bounced... BOING!! BOING!! BOING!! Straight into everyone.",
+                    hi: "जब सब हंस रहे थे... तब कुछ बहुत बड़ा... बूम... एक विशाल तरबूज रेनबो हिल से नीचे लुढ़क कर आया। 'हटो!! ब्रेक नहीं हैं!!' वह उछला... बोइंग!! बोइंग!! बोइंग!! सीधे सब से जा टकराया।"
+                }
+            },
+            {
+                type: "text",
+                music: "/sounds/freesound_community-girl-laugh-6689.mpeg",
+                content: {
+                    en: "The watermelon cracked open... Inside sat a tiny smiling girl. 'Hi!! I'm Suika. I got lost. I think. Maybe. I forgot.' 😂",
+                    hi: "तरबूज टूटकर खुल गया... अंदर एक छोटी सी मुस्कुराती हुई लड़की बैठी थी। 'हाय!! मैं सुइका हूँ। मैं खो गई हूँ। मुझे लगता है। शायद। मैं भूल गई।' 😂"
+                }
+            },
+            {
+                type: "text",
+                music: "/sounds/nastelbom-adventure-318203.mpeg",
+                content: {
+                    en: "Safa smiled. 'Perfect. One brave chick... One rolling watermelon... And one tiny fairy... This is exactly how great adventures begin.'",
+                    hi: "सफा मुस्कुराई। 'बेहतरीन। एक बहादुर चूजा... एक लुढ़कता तरबूज... और एक नन्ही परी... महान कारनामों की शुरुआत बिल्कुल ऐसे ही होती है।'"
+                }
+            },
+
+            // SCENE 3: MOCHI THE SHY FOX
+            {
+                type: "image",
+                src: mochi_shy_fox,
+                caption: { en: "Mochi the shy fox hides behind a mushroom, his pastel heart emblem glowing warmly." }
+            },
+            {
+                type: "text",
+                music: "/sounds/soundreality-heart-beat-137135.mpeg",
+                content: {
+                    en: "As they walked deeper into the forest, the bushes rustled. Out stepped a shy little fox named Mochi with oversized ears. A tiny pastel heart floated near his chest, glowing softly. 'I can hear your hearts,' Mochi whispered. Kunjatta puffed out his chest, 'A warrior chick knows no fear!' but his heart was beating fast.",
+                    hi: "जैसे ही वे जंगल में और गहरे गए, झाड़ियाँ सरसरायीं। बड़े-बड़े कानों वाला मोची नाम का एक शर्मीला छोटा लोमड़ी बाहर आया। उसके सीने के पास एक छोटा पेस्टल दिल तैर रहा था, जो धीरे से चमक रहा था। 'मैं तुम्हारे दिलों की आवाज़ सुन सकता हूँ,' मोची ने फुसफुसाया। कुंजाट्टा ने अपना सीना फुलाया, 'एक योद्धा चूजा किसी चीज़ से नहीं डरता!' लेकिन उसका दिल तेजी से धड़क रहा था।"
+                }
+            },
+
+            // SCENE 4: PROFESSOR HOOTU
+            {
+                type: "image",
+                src: professor_hootu_scrolls,
+                caption: { en: "Professor Hootu searches through floating, sparkling ancient scrolls with crooked glasses." }
+            },
+            {
+                type: "text",
+                music: "/sounds/tddduy93-the-wisdom-of-ancestors-496827.mpeg",
+                content: {
+                    en: "Next, they climbed the Knowledge Tree to visit Professor Hootu, a wise old owl with crooked spectacles on his beak. Sparkling ancient scrolls floated around him. 'Where did I put my memory?' he asked, looking for a map. Then he smiled kindly, 'The best way to not get lost is to walk together.'",
+                    hi: "इसके बाद, वे प्रोफेसर हूटू से मिलने नॉलेज ट्री पर चढ़े, जो अपनी चोंच पर तिरछा चश्मा लगाए हुए एक बुद्धिमान बूढ़े उल्लू थे। उनके चारों ओर चमकते हुए प्राचीन स्क्रॉल तैर रहे थे। 'मैंने अपनी याददाश्त कहाँ रख दी?' उन्होंने एक नक्शा ढूंढते हुए पूछा। फिर वे दयालुता से मुस्कुराए, 'न खोने का सबसे अच्छा तरीका एक साथ चलना है।'"
+                }
+            },
+
+            // SCENE 5: LULU THE RAINBOW BUTTERFLY
+            {
+                type: "image",
+                src: lulu_rainbow_trail,
+                caption: { en: "Lulu paints neon trails in the fog, landing right on Kunjatta's head." }
+            },
+            {
+                type: "text",
+               music: "/sounds/whispering-stars-forest-completeCoverSong.mpeg",
+                content: {
+                    en: "Suddenly, twilight fell and a thick fog rolled in. Out flew Lulu, a tiny rainbow butterfly with iridescent wings. She couldn't speak, but she left a glowing trail of neon light patterns in the air, creating a bright path. Lulu landed right on Kunjatta's head, making the little chick freeze in comical terror! 😂",
+                    hi: "अचानक, गोधूलि बेला हो गई और घना कोहरा छा गया। वहाँ से चमकीले इंद्रधनुषी पंखों वाली एक नन्ही तितली लुलु उड़ती हुई आई। वह बोल नहीं सकती थी, लेकिन उसने हवा में नियॉन लाइट के पैटर्न का एक चमकता हुआ रास्ता बना दिया। लुलु सीधे कुंजाट्टा के सिर पर जा बैठी, जिससे छोटा चूजा मज़ेदार डर के मारे जम गया! 😂"
+                }
+            },
+
+            // THE SECRET & HONORARY LESSONS BLOCK
+            {
+                type: "secret_lessons",
+                meta: {
+                    title: { en: "🌟 The Secret 🌟", hi: "🌟 रहस्य 🌟" },
+                    badge: { en: "Honorary Star Keeper", hi: "मानद स्टार कीपर" },
+                    intro: {
+                        en: "Every child who opens this story becomes an Honorary Star Keeper. Each chapter ends with a tiny lesson—not as a lecture, but as something the characters discover together:",
+                        hi: "जो भी बच्चा इस कहानी को खोलता है वह एक मानद स्टार कीपर बन जाता है। प्रत्येक अध्याय एक छोटे से पाठ के साथ समाप्त होता है—एक व्याख्यान के रूप में नहीं, बल्कि कुछ ऐसा जिसे पात्र मिलकर खोजते हैं:"
+                    }
+                },
+                lessons: [
+                    { emoji: "🌸", text: { en: "Kindness makes magic stronger.", hi: "दयालुता जादू को और मजबूत बनाती है।" } },
+                    { emoji: "🌼", text: { en: "Courage means being scared and trying anyway.", hi: "साहस का अर्थ है डरना और फिर भी प्रयास करना।" } },
+                    { emoji: "🌈", text: { en: "Sharing happiness makes it grow.", hi: "खुशी बांटने से बढ़ती है।" } },
+                    { emoji: "⭐", text: { en: "Mistakes become stepping stones.", hi: "गलतियाँ आगे बढ़ने का जरिया बनती हैं।" } },
+                    { emoji: "💛", text: { en: "Every little heart shines differently.", hi: "हर छोटा दिल अलग तरह से चमकता है।" } }
+                ]
+            }
         ]
     }
 ];

@@ -14,7 +14,10 @@ export type MultiLangText = {
   russian?:string;
   arabic?:string;
 };
-
+export type SecretLesson = {
+  emoji: string;
+  text: MultiLangText;
+};
 export type StoryBlock =
   | {
       type: "text";
@@ -32,7 +35,23 @@ export type StoryBlock =
       src: string;
       caption?: MultiLangText;
       music?: string;
+    } | {
+      type: "secret_lessons";
+      meta: {
+        title: MultiLangText;
+        badge?: MultiLangText;
+        intro?: MultiLangText;
+      };
+      lessons: SecretLesson[];
+       music?: string;
     };
+    export type Genre = string;
+export type StoryCharacter = {
+  name: string;
+  type: string;
+  description: string;
+  image?: string; // 👈 character avatar / illustration URL
+};
 export type Story = {
   id: string;
   title: MultiLangText;
@@ -43,4 +62,13 @@ export type Story = {
   featured?: boolean;
   readTime?: string; // NEW
   blocks: StoryBlock[];
+   genre?: Genre[];   // ✅ ADD THIS
+
+  characters?: StoryCharacter[]; // ✅ ADD THIS
 };
+export type CharacterIntroPage = {
+  type: "characters";
+  music?: string;
+};
+
+export type StoryPage = CharacterIntroPage | StoryBlock;

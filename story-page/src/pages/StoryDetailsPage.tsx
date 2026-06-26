@@ -15,7 +15,7 @@ const getText = (text: any, lang: Language) => {
     return text[lang] || text.en;
 };
 
-export default function StoryDetailsPage({ lang, musicEnabled, }: { lang: Language;  musicEnabled: boolean;}) {
+export default function StoryDetailsPage({ lang, musicEnabled, }: { lang: Language; musicEnabled: boolean; }) {
     const { id } = useParams();
     const story = stories.find((s) => s.id === id);
     const blockMusicRef = useRef<HTMLAudioElement | null>(null);
@@ -23,7 +23,7 @@ export default function StoryDetailsPage({ lang, musicEnabled, }: { lang: Langua
     const [isTurning, setIsTurning] = useState(false);
     const [direction, setDirection] = useState<"next" | "prev" | null>(null);
     const [animatingPage, setAnimatingPage] = useState<number | null>(null);
-
+    const characters = story?.characters ?? [];
     const [particles, setParticles] = useState<any[]>([]);
     const fairies = [
         "/fairies/fairy1.png",
@@ -33,52 +33,52 @@ export default function StoryDetailsPage({ lang, musicEnabled, }: { lang: Langua
         "/fairies/fairy1.png",
         "/fairies/fairy3.png",
     ];
-   
 
-useEffect(() => {
 
-    // 🔇 user turned music off
-    if (!musicEnabled) {
-        if (blockMusicRef.current) {
-            blockMusicRef.current.pause();
-            blockMusicRef.current.currentTime = 0;
-            blockMusicRef.current = null;
+    useEffect(() => {
+
+        // 🔇 user turned music off
+        if (!musicEnabled) {
+            if (blockMusicRef.current) {
+                blockMusicRef.current.pause();
+                blockMusicRef.current.currentTime = 0;
+                blockMusicRef.current = null;
+            }
+            return;
         }
-        return;
-    }
 
-    const currentBlock = story?.blocks[page];
+        const currentBlock = story?.blocks[page];
 
-    if (!currentBlock?.music) {
-        if (blockMusicRef.current) {
-            blockMusicRef.current.pause();
-            blockMusicRef.current.currentTime = 0;
-            blockMusicRef.current = null;
+        if (!currentBlock?.music) {
+            if (blockMusicRef.current) {
+                blockMusicRef.current.pause();
+                blockMusicRef.current.currentTime = 0;
+                blockMusicRef.current = null;
+            }
+            return;
         }
-        return;
-    }
 
-    if (blockMusicRef.current) {
-        blockMusicRef.current.pause();
-        blockMusicRef.current.currentTime = 0;
-    }
-
-    const audio = new Audio(currentBlock.music);
-
-    audio.loop = true;
-    audio.volume = 0.35;
-
-    audio.play().catch(() => {});
-
-    blockMusicRef.current = audio;
-
-    return () => {
         if (blockMusicRef.current) {
             blockMusicRef.current.pause();
             blockMusicRef.current.currentTime = 0;
         }
-    };
-}, [page, story, musicEnabled]);
+
+        const audio = new Audio(currentBlock.music);
+
+        audio.loop = true;
+        audio.volume = 0.35;
+
+        audio.play().catch(() => { });
+
+        blockMusicRef.current = audio;
+
+        return () => {
+            if (blockMusicRef.current) {
+                blockMusicRef.current.pause();
+                blockMusicRef.current.currentTime = 0;
+            }
+        };
+    }, [page, story, musicEnabled]);
 
 
     useEffect(() => {
@@ -109,7 +109,7 @@ useEffect(() => {
         return () => clearInterval(interval);
     }, []);
     /* 🌙 AMBIENT MUSIC */
-    
+
 
     /* 🔊 PAGE TURN SOUND (ONLY ON EVENT) */
     const playTurnSound = () => {
@@ -144,8 +144,16 @@ useEffect(() => {
 
     if (!story) return null;
 
-    const left = story.blocks[page];
-    const right = story.blocks[page + 1];
+    const pages = [
+        ...(story.characters?.length
+            ? [{ type: "characters" as const }]
+            : []),
+
+        ...story.blocks,
+    ];
+
+    const left = pages[page];
+    const right = pages[page + 1];
 
     const isSpread =
         left?.type === "image" ||
@@ -157,17 +165,11 @@ useEffect(() => {
         if (page < story.blocks.length - 1 && !isTurning) {
             setIsTurning(true);
             setDirection("next");
-
-
-
-
-
             setAnimatingPage(page);
             playTurnSound();
-            setIsTurning(true);
 
             setTimeout(() => {
-                setPage((p) => p + (isSpread ? 1 : 2)); // ONLY after animation
+                setPage((p) => p + 1);// ONLY after animation
                 setAnimatingPage(null);
                 setIsTurning(false);
             }, 650);
@@ -183,11 +185,8 @@ useEffect(() => {
 
             playTurnSound();
 
-
-            setIsTurning(true);
-
             setTimeout(() => {
-                setPage((p) => Math.max(0, p - (isSpread ? 1 : 2)));
+                setPage((p) => p - 1);
                 setAnimatingPage(null);
                 setIsTurning(false);
             }, 650);
@@ -215,18 +214,19 @@ useEffect(() => {
                 ))}
             </div>
             {/* ORNAMENTS */}
+
             {/* <img src={goldenLeft} className="fixed  glow-gold left-0 top-1/2 -translate-y-1/2 w-64 opacity-60" />
             <img src={goldenRight} className="fixed  glow-gold right-0 top-1/2 -translate-y-1/2 w-64 opacity-60" /> */}
 
-<img
-  src={goldenLeft}
-  className="fixed left-0 top-[40%] -translate-y-1/2 w-56 opacity-50 glow-gold animate-goldDrift pointer-events-none"
-/>
+            <img
+                src={goldenLeft}
+                className="fixed left-0 top-[40%] -translate-y-1/2 w-56 opacity-50 glow-gold animate-goldDrift pointer-events-none"
+            />
 
-<img
-  src={goldenRight}
-  className="fixed right-0 top-[40%] -translate-y-1/2 w-56 opacity-50 glow-gold animate-goldDrift pointer-events-none"
-/>
+            <img
+                src={goldenRight}
+                className="fixed right-0 top-[40%] -translate-y-1/2 w-56 opacity-50 glow-gold animate-goldDrift pointer-events-none"
+            />
             <div className="pointer-events-none fixed inset-0 z-20">
                 {/* FAIRIES */}
                 <div className="absolute top-20 left-14 animate-fairyPath1">
@@ -252,6 +252,7 @@ useEffect(() => {
                 <FairyParticles />
                 <FairySwarm />
             </div>
+
             {/* BOOK */}
             <div
                 className={`
@@ -324,6 +325,40 @@ useEffect(() => {
                                     transformOrigin: "left center",
                                 }}
                             >
+                                {left?.type === "characters" && (
+                                    <div className="space-y-4">
+                                        <h2 className="text-2xl text-yellow-300 font-bold text-center">
+                                            Meet the Characters ✨
+                                        </h2>
+
+                                        <div className="grid grid-cols-2 gap-4">
+                                            {characters.map((c, i) => (
+                                                <div
+                                                    key={i}
+                                                    className="bg-white/5 rounded-xl p-3 text-center"
+                                                >
+                                                    <img
+                                                        src={c.image}
+                                                        className="w-16 h-16 mx-auto rounded-full"
+                                                    />
+
+                                                    <p className="text-white font-semibold mt-2">
+                                                        {c.name}
+                                                    </p>
+
+                                                    <p className="text-pink-300 text-xs">
+                                                        {c.type}
+                                                    </p>
+
+                                                    <p className="text-gray-400 text-xs mt-2">
+                                                        {c.description}
+                                                    </p>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+
                                 {left?.type === "text" && (
                                     <p className="text-gray-300 italian-font leading-relaxed animate-fadeIn">
                                         {getText(left.content, lang)}

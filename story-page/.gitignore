@@ -22,5 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-
+*.mpeg
+*.mp3
+*.png
 .vercel
